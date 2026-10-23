@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bento To-Do
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#1c1c22">
+    <link rel="apple-touch-icon" href="icon-192.png">
+  </title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <main class="bento">
+
+    <!-- Greeting -->
+    <section class="tile hero">
+      <p class="date" id="todayDate"></p>
+      <h1 id="greeting">Hello</h1>
+      <p class="sub" id="heroSub"></p>
+    </section>
+
+    <!-- Progress ring -->
+    <section class="tile progress">
+      <div class="ring-wrap">
+        <svg viewBox="0 0 120 120" class="ring" aria-hidden="true">
+          <circle class="track" cx="60" cy="60" r="50"></circle>
+          <circle class="bar" id="ringBar" cx="60" cy="60" r="50"></circle>
+        </svg>
+        <div class="ring-text">
+          <strong id="percent">0%</strong>
+          <span>done</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Due today -->
+    <section class="tile due">
+      <span class="cap">Due today</span>
+      <span class="big" id="dueToday">0</span>
+      <span class="pill" id="overdueCount">0 overdue</span>
+    </section>
+
+    <!-- Lists -->
+    <aside class="tile lists">
+      <h2>Lists</h2>
+      <ul id="listNav"></ul>
+      <form id="listForm" class="list-form">
+        <input type="text" id="listInput" placeholder="New list" maxlength="24" required autocomplete="off">
+        <button type="submit" aria-label="Add list">+</button>
+      </form>
+    </aside>
+
+    <!-- Add task -->
+    <section class="tile add">
+      <form id="taskForm">
+        <input type="text" id="taskTitle" class="title-input" placeholder="What needs to be done?" maxlength="120"
+          required autocomplete="off">
+        <div class="row">
+          <label>Date <input type="date" id="taskDate"></label>
+          <label>Time <input type="time" id="taskTime"></label>
+          <label>List <select id="taskListSel"></select></label>
+          <button type="submit" class="btn-main">Add task</button>
+        </div>
+      </form>
+    </section>
+
+    <!-- Tasks -->
+    <section class="tile tasks">
+      <div class="tasks-head">
+        <h2 id="listTitle">All tasks</h2>
+        <div class="filters" id="filters">
+          <button data-filter="all" class="active">All</button>
+          <button data-filter="active">Active</button>
+          <button data-filter="done">Done</button>
+        </div>
+      </div>
+      <ul id="taskUl"></ul>
+      <p class="empty" id="emptyMsg"></p>
+      <button class="clear" id="clearBtn" hidden <div class="backup">
+        <button type="button" class="clear" id="exportBtn">Export backup</button>
+        <button type="button" class="clear" id="importBtn">Import backup</button>
+        <input type="file" id="importFile" accept=".json" hidden>
+        </div>>Clear completed</button>
+    </section>
+
+  </main>
+
+  <!-- Edit window -->
+  <dialog id="editDialog">
+    <form id="editForm">
+      <h3>Edit task</h3>
+      <input type="text" id="editTitle" maxlength="120" required autocomplete="off">
+      <div class="row">
+        <label>Date <input type="date" id="editDate"></label>
+        <label>Time <input type="time" id="editTime"></label>
+        <label>List <select id="editList"></select></label>
+      </div>
+      <div class="dialog-actions">
+        <button type="button" class="btn-ghost" id="cancelEdit">Cancel</button>
+        <button type="submit" class="btn-main">Save</button>
+      </div>
+    </form>
+  </dialog>
+
+  <script src="script.js"></script>
+</body>
+
+</html>
